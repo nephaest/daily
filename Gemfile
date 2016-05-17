@@ -18,9 +18,6 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 
-# Add devise
-gem 'devise'
-
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
@@ -28,8 +25,13 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'
+  gem 'faker'
 end
 
 group :production do
   gem 'rails_12factor'
 end
+
+# Add our Gems here
+gem 'devise'
+gem 'validates_timeliness'
