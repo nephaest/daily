@@ -72,6 +72,8 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.6.0)
+    faker (1.6.3)
+      i18n (~> 0.5)
     figaro (1.1.1)
       thor (~> 0.14)
     font-awesome-sass (4.6.2)
@@ -196,6 +198,7 @@ DEPENDENCIES
   carrierwave
   cloudinary
   devise
+  faker
   figaro
   font-awesome-sass
   jbuilder (~> 2.0)
@@ -213,9 +216,6 @@ DEPENDENCIES
   spring
   uglifier
   validates_timeliness
-
-RUBY VERSION
-   ruby 2.3.0p0
 
 BUNDLED WITH
    1.12.1
