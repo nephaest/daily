@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20160517094037) do
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.string   "photo"
+    t.string   "telephone"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
