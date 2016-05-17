@@ -22,16 +22,18 @@ class RegistrationsController < Devise::RegistrationsController
   # end
 
 
-  private
+
+  protected
 
   def after_sign_up_path_for(resource)
     if current_user.position == "I'm a owner"
-      new_facility_path
-    else
-      edit_user_registration_path(@user)
+      new_facility_path(current_user)
+    elsif current_user.position == "I'm a job seeker"
+      edit_user_registration_path(current_user)
     end
   end
 
+  private
 
   def sign_up_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :photo, :photo_cache, :position)
