@@ -31,6 +31,7 @@ class RegistrationsController < Devise::RegistrationsController
     elsif current_user.position == "I'm a job seeker"
       edit_user_registration_path(current_user)
     end
+
   end
 
   private
