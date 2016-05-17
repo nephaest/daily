@@ -2,28 +2,29 @@ require "faker"
 
 
 def random_social_security_number
-  1225697227266278 + Random.rand(97656784553452)
+  (122569722726627 + Random.rand(97656784553452)).to_s
 end
 
 def random_siret
-  122569722726627 + Random.rand(97656784553452)
+  (12256972272662 + Random.rand(97656784553452)).to_s
 end
 
 
-positions = ["Barman", "waiter", "Cook", "Receptionist", "Commis", "Second in command", "Desk Clerk", "Washer up"]
+positions = ["Barman", "Waiter", "Cook", "Receptionist", "Commis", "Second in command", "Desk Clerk", "Washer up"]
 min_wages =  [800, 900, 1000, 1100, 1200, 1500]
 cities = ["Paris", "Versailles", "Montreuil", "Clamart", "Cergy", "Nanterre"]
 user_mobility = [2, 5, 10, 25, 50]
-facility_size = ["<9", "10-49", "50-199", "200+"]
+facility_size = Facility::COMPANY_SIZES
 facility_categories = ["Hotel 1-2-3 *", "Hotel 4-5 *", "Evenementiel", "Restaurantion Gastronomique", "traiteur", "Brasserie", "Bar", "Restauration Rapide", "Camping", "Discothèque"]
 
-
+User.destroy_all
+Facility.destroy_all
 50.times do |num|
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     birth_date: Faker::Date.between(50.years.ago, 20.years.ago),
-    description: Faker::Lorem.sentence,
+    description: Faker::Lorem.paragraphs.join,
     position: positions.sample,
     min_wage: min_wages.sample,
     address: cities.sample,
@@ -43,7 +44,6 @@ end
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     birth_date: Faker::Date.between(50.years.ago, 40.years.ago),
-    description: Faker::Lorem.sentence,
     position: "Business owner",
     email: "#{num.next}@boss.com",
     password: "hellohello",
@@ -63,7 +63,7 @@ end
       size: facility_size.sample,
       category: facility_categories.sample,
       website_url: Faker::Internet.url,
-      description: Faker::Company.catch_phrase,
+      description: Faker::Lorem.paragraphs.join,
       user: employer
     )
     facility.save!
