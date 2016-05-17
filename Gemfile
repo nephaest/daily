@@ -7,6 +7,8 @@ gem 'pg'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'redis'
+gem 'cloudinary'
+gem 'carrierwave'
 
 gem 'sass-rails'
 gem 'jquery-rails'
@@ -15,9 +17,6 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
-
-# Add devise
-gem 'devise'
 
 group :development, :test do
   gem 'binding_of_caller'
@@ -31,3 +30,7 @@ end
 group :production do
   gem 'rails_12factor'
 end
+
+# Add our Gems here
+gem 'devise'
+gem 'validates_timeliness'
