@@ -1,6 +1,6 @@
 class FacilitiesController < ApplicationController
   before_action :set_facility, only: [:edit, :update, :destroy]
-  
+
   def index
     @facilities = Facility.all
   end
@@ -30,6 +30,7 @@ class FacilitiesController < ApplicationController
       redirect_to facility_path(@facility)
     else
       render :edit
+    end
   end
 
   private
