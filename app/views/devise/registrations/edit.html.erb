@@ -19,7 +19,7 @@
               <%= f.input :address, required: true, autofocus: true %>
               <%= f.input :mobility_radius, required: true, autofocus: true %>
               <%= f.input :on_duty %>
-              <%= f.input :position, required: true, autofocus: true, collection: [] %>
+              <%= f.input :position, required: true, autofocus: true, collection: ["Barman", "Waiter", "Cook", "Receptionist", "Commis", "Second in command", "Desk Clerk", "Washer up"] %>
               <%= f.input :social_security_number, required: true, autofocus: true %>
               <%= f.input :telephone, required: true, autofocus: true %>
 
