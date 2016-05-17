@@ -4,12 +4,7 @@
     <h1>Finding <strong>extras</strong> has never been easier</h1>
     <br>
 
-    <%= simple_form_for(@jobrequest, html: { class: 'form-inline' }) do |f| %>
-      <%= f.error_notification %>
-      <%= f.input :position %>
-      <%# f.input :start_time %>
-      <%= f.button :submit, class: "btn btn-primary" %>
-    <% end %>
+    <%= render 'shared/search' %>
   </div>
 </div>
 
