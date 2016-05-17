@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  # get 'registrations/sign_up_params'
+
+  # get 'registrations/account_update_params'
+
+  devise_for :users, :controllers => { registrations: 'registrations' }
   root to: 'pages#home'
   resources :workers, only: [:index]
   resources :facilities, only: [:show, :new, :create, :edit, :update]
