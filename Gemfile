@@ -1,3 +1,8 @@
+source "https://rails-assets.org" do
+  gem 'rails-assets-bootstrap-datepicker'
+end
+
+
 source 'https://rubygems.org'
 ruby '2.3.0'
 
@@ -20,6 +25,8 @@ gem 'autoprefixer-rails'
 
 # Add devise
 gem 'devise'
+
+
 
 group :development, :test do
   gem 'binding_of_caller'
