@@ -3,12 +3,7 @@
     <h1>Daily</h1>
     <p>Find extras, easily</p>
 
-    <%= simple_form_for(@jobrequest, html: { class: 'form-inline' }) do |f| %>
-      <%= f.error_notification %>
-      <%= f.input :position %>
-      <%# f.input :start_time %>
-      <%= f.button :submit, class: "btn btn-primary" %>
-    <% end %>
+    <%= render 'shared/search' %>
   </div>
 </div>
 

@@ -1,5 +1,7 @@
 class JobRequest < ActiveRecord::Base
-  #POSITIONS = []
+  POSITIONS = ["Barman", "Waiter", "Cook", "Receptionist", "Commis", "Second in command", "Desk Clerk", "Washer up"]
+  LOCATIONS = ["Paris", "Versailles", "Montreuil", "Clamart", "Cergy", "Nanterre"]
+
 
   belongs_to :facility
   has_many :bookings
