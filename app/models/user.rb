@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+
+  mount_uploader :photo, PhotoUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -8,7 +10,8 @@ class User < ActiveRecord::Base
   has_many :facilities
 
   validates :first_name, :last_name, presence: true #:birth_date, :birth_place, :address, :position, presence: true
-  validates :min_wage, numericality: { greater_than_or_equal_to: 750 } # SMIC horaire 2016
+  # validates :min_wage, numericality: { greater_than_or_equal_to: 750 } # SMIC horaire 2016
+
   # validates :birth_date,
 
       # t.string :first_name
