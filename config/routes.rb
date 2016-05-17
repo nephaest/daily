@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :workers, only: [:index]
   resources :facilities, only: [:show, :new, :create, :edit, :update]
+  resources :job_requests, only: [:create]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
