@@ -3,5 +3,5 @@
       <%= f.input :position, collection: JobRequest::POSITIONS, label: false %>
       <%= f.input :location, collection: JobRequest::LOCATIONS, label: false %>
       <%= f.input :start_time, as: :date, label: false %>
-      <%= f.button :submit, class: "btn btn-primary" %>
+      <%= f.button :submit, 'Find', class: "btn btn-primary", id: "find_button" %>
     <% end %>
