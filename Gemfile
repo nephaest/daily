@@ -36,6 +36,7 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'faker'
 end
 
 # Add our Gems here

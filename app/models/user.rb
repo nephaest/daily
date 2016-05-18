@@ -16,6 +16,14 @@ class User < ActiveRecord::Base
   validates :mobility_radius, numericality: { only_integer: true,  greater_than_or_equal_to: 0, allow_nil: true } # SMIC horaire 2016
   validate :social_security_number_is_valid, on: :update
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def owner?
+    facilities.any?
+  end
+ 
   private
 
   def social_security_number_is_valid
