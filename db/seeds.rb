@@ -90,7 +90,7 @@ cities.each do |city|
       siret: generate_siret,
       creation_date: Faker::Date.between(40.years.ago, 20.years.ago),
       address: city,
-      size: facility_size.sample,
+      size: ['1', '2 - 9'].sample,
       category: Facility::COMPANY_SIZE.sample,
       website_url: Faker::Internet.url,
       description: Faker::Lorem.paragraphs.join,
