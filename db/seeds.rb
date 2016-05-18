@@ -25,6 +25,7 @@ min_wages =  [800, 900, 1000, 1100, 1200, 1500]
 cities = ["Paris", "Versailles", "Montreuil", "Clamart", "Cergy", "Nanterre"]
 user_mobility = [2, 5, 10, 25, 50]
 facility_categories = ["Hotel 1-2-3 *", "Hotel 4-5 *", "Evenementiel", "Restaurantion Gastronomique", "traiteur", "Brasserie", "Bar", "Restauration Rapide", "Camping", "Discothèque"]
+company_sizes = ['1', '2 - 9', '10 - 49', '50 - 199', '200+']
 
 cities.each do |city|
   positions.each do |position|
@@ -90,7 +91,7 @@ cities.each do |city|
       siret: generate_siret,
       creation_date: Faker::Date.between(40.years.ago, 20.years.ago),
       address: city,
-      size: COMPANY_SIZES.sample,
+      size: company_sizes.sample,
       category: facility_categories.sample,
       website_url: Faker::Internet.url,
       description: Faker::Lorem.paragraphs.join,
