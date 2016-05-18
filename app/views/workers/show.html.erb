@@ -18,10 +18,10 @@
         <p>Location: <%= @worker.address %></p>
         <p>Email: <%= @worker.email %></p>
         <% if current_user.owner? %>
-          <%= link_to "Hire", worker_bookings_path(worker_id: @worker.id), method: :post, class:"btn btn-success" %>
+          <%= link_to "Hire", worker_bookings_path(worker_id: @worker.id), method: :post, class:"btn btn-primary" %>
         <% end %>
         <% if current_user.id == @worker_id %>
-          <%= link_to "Edit", edit_worker_path, class:"btn btn-success" %>
+          <%= link_to "Edit", edit_worker_path, class:"btn btn-primary" %>
         <% end %>
         <% unless @worker.bookings.empty? %>
         <!-- faire correspondre le booking avec le user en question et le current user -->
