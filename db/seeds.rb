@@ -1,76 +1,101 @@
 require "faker"
+require 'json'
+require 'open-uri'
 
+# Clear db
+Facility.destroy_all
+User.destroy_all
 
-def random_social_security_number
-  (122569722726627 + Random.rand(97656784553452)).to_s
+def generate_social_security_number(birth_date)
+  sid = %w(1 2).sample \
+    + (birth_date.year % 100).to_s \
+    + (birth_date.month).to_s \
+    + "%2d" % (1 + rand(95)) \
+    + "%3d" % rand(1000) \
+    + "%3d" % rand(1000)
+  sid += "%2d" % (97 - (sid[0..12].to_i % 97))
 end
 
-def random_siret
-  (12256972272662 + Random.rand(97656784553452)).to_s
+def generate_siret
+  siret = (1 + rand(9)).to_s + ('0'..'9').to_a.sample * 8 + '0' * 3 + '18'
 end
-
 
 positions = ["Barman", "Waiter", "Cook", "Receptionist", "Commis", "Second in command", "Desk Clerk", "Washer up"]
 min_wages =  [800, 900, 1000, 1100, 1200, 1500]
 cities = ["Paris", "Versailles", "Montreuil", "Clamart", "Cergy", "Nanterre"]
 user_mobility = [2, 5, 10, 25, 50]
-facility_size = Facility::COMPANY_SIZES
 facility_categories = ["Hotel 1-2-3 *", "Hotel 4-5 *", "Evenementiel", "Restaurantion Gastronomique", "traiteur", "Brasserie", "Bar", "Restauration Rapide", "Camping", "Discothèque"]
 
-User.destroy_all
-Facility.destroy_all
-  number = 1
-50.times do |num|
-
-  number += 1
-  user = User.new(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    birth_date: Faker::Date.between(50.years.ago, 20.years.ago),
-    description: Faker::Lorem.paragraphs.join,
-    position: positions.sample,
-    min_wage: min_wages.sample,
-    address: cities.sample,
-    email: "#{num.next}@extra.com",
-    password: "hellohello",
-    password_confirmation: "hellohello",
-    mobility_radius: user_mobility.sample,
-    telephone: Faker::PhoneNumber.phone_number,
-    on_duty: true,
-    social_security_number: random_social_security_number,
-    photo: ""
-  )
-  user.save!
+cities.each do |city|
+  positions.each do |position|
+    (2 + rand(4)).times do
+      api_url = 'http://uifaces.com/api/v1/random'
+      photo_url = ''
+      open(api_url) do |stream|
+        hash = JSON.parse(stream.read)
+        photo_url = hash['image_urls']['epic']
+      end
+      first_name = Faker::Name.first_name
+      last_name = Faker::Name.last_name
+      birth_date = Faker::Date.between(50.years.ago, 16.years.ago)
+      User.create(
+        first_name: first_name,
+        last_name: last_name,
+        birth_date: birth_date,
+        description: Faker::Lorem.paragraphs.join,
+        position: position,
+        min_wage: min_wages.sample,
+        address: city,
+        email: "#{first_name}.#{last_name}.extra@daily.com",
+        password: "instantdaily",
+        password_confirmation: "instantdaily",
+        mobility_radius: user_mobility.sample,
+        telephone: Faker::PhoneNumber.phone_number,
+        on_duty: true,
+        social_security_number: generate_social_security_number(birth_date),
+        photo: photo_url
+      )
+    end
+  end
 end
 
-10.times do |num|
-  employer = User.new(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    birth_date: Faker::Date.between(50.years.ago, 40.years.ago),
-    position: "Business owner",
-    email: "#{num.next}@boss.com",
-    password: "hellohello",
-    password_confirmation: "hellohello",
-    min_wage: nil,
-    address: cities.sample,
-    mobility_radius: nil,
-    on_duty: false,
-    social_security_number: random_social_security_number
-  )
-  employer.save!
-    facility = Facility.new(
+# facilities
+cities.each do |city|
+  (2 + rand(3)).times do
+    api_url = 'http://uifaces.com/api/v1/random'
+    photo_url = ''
+    open(api_url) do |stream|
+      hash = JSON.parse(stream.read)
+      photo_url = hash['image_urls']['epic']
+    end
+
+    first_name = Faker::Name.first_name
+    last_name = Faker::Name.last_name
+
+    employer = User.create(
+      first_name: first_name,
+      last_name: last_name,
+      position: "Business owner",
+      email: "#{first_name}.#{last_name}.boss@instantdaily.com",
+      password: "instantdaily",
+      password_confirmation: "instantdaily",
+      min_wage: nil,
+      address: city,
+      mobility_radius: nil,
+      on_duty: false,
+      photo: photo_url
+    )
+    facility = Facility.create(
       name: Faker::Company.name,
-      siret: random_siret,
+      siret: generate_siret,
       creation_date: Faker::Date.between(40.years.ago, 20.years.ago),
-      address: cities.sample,
+      address: city,
       size: facility_size.sample,
-      category: facility_categories.sample,
+      category: Facility::COMPANY_SIZE.sample,
       website_url: Faker::Internet.url,
       description: Faker::Lorem.paragraphs.join,
-      user: employer
+      user: employer,
+      photo: ""
     )
-    facility.save!
+  end
 end
-
-
