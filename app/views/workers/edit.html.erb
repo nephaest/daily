@@ -1,0 +1,46 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+
+        <%= simple_form_for(@worker, method: :put, url: worker_path, html: { autocomplete: 'on' }) do |f| %>
+
+          <%= f.error_notification %>
+
+          <div class="form-inputs">
+            <%= f.input :email, autofocus: true %>
+
+
+
+              <%= f.input :birth_date, as: :string, input_html: {class: 'birth_date'} %>
+              <%= f.input :birth_place %>
+              <%= f.input :description, autofocus: true%>
+              <%= f.input :min_wage, autofocus: true %>
+              <%= f.input :address, autofocus: true %>
+              <%= f.input :mobility_radius, autofocus: true %>
+              <%= f.input :on_duty %>
+              <%= f.input :position, autofocus: true, collection: ["Barman", "Waiter", "Cook", "Receptionist", "Commis", "Second in command", "Desk Clerk", "Washer up"] %>
+              <%= f.input :social_security_number, autofocus: true %>
+              <%= f.input :telephone, autofocus: true %>
+
+              <%= f.input :email, autofocus: true %>
+              <%= f.input :first_name %>
+              <%= f.input :last_name %>
+              <%= f.input :password, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+              <%= f.input :password_confirmation %>
+              <%= f.input :photo %>
+              <% f.input :photo_cache, as: :hidden %>
+
+
+
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Update" %>
+          </div>
+        <% end %>
+
+   </div>
+  </div>
+</div>
