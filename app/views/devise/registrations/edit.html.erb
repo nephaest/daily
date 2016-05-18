@@ -12,14 +12,14 @@
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
             <% end %>
-              <%= f.input :birth_date, as: :string, required: true, input_html: {class: 'datepicker'} %>
+              <%= f.input :birth_date, as: :string, required: true, input_html: {class: 'birth_date'} %>
               <%= f.input :birth_place, required: true, autofocus: true %>
               <%= f.input :description, required: true, autofocus: true%>
               <%= f.input :min_wage, required: true, autofocus: true %>
               <%= f.input :address, required: true, autofocus: true %>
               <%= f.input :mobility_radius, required: true, autofocus: true %>
               <%= f.input :on_duty %>
-              <%= f.input :position, required: true, autofocus: true, collection: [] %>
+              <%= f.input :position, required: true, autofocus: true, collection: ["Barman", "Waiter", "Cook", "Receptionist", "Commis", "Second in command", "Desk Clerk", "Washer up"] %>
               <%= f.input :social_security_number, required: true, autofocus: true %>
               <%= f.input :telephone, required: true, autofocus: true %>
 
