@@ -10,7 +10,7 @@
                 <p><%= worker.position %></p>
               </div>
               <img class="card-user avatar" src="user.jpg">
-              <a class="card-link" href="#" ></a>
+              <%= link_to "", worker_path(worker), class:"card-link"  %>
             </div>
         </div>
       <% end %>
