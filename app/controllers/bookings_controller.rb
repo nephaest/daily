@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to worker_path(@booking.user)
     else
-      raise
+      # mettre message d'erreur et le retourner sur le worker_path.
     end
   end
 

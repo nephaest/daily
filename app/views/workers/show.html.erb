@@ -17,7 +17,9 @@
         <p>Position: <%= @worker.position %></p>
         <p>Location: <%= @worker.address %></p>
         <p>Email: <%= @worker.email %></p>
-        <%= link_to "Hire", worker_bookings_path(worker_id: @worker.id), method: :post, class:"btn btn-success" %>
+        <% if current_user.owner? %>
+          <%= link_to "Hire", worker_bookings_path(worker_id: @worker.id), method: :post, class:"btn btn-success" %>
+        <% end %>
         <% unless @worker.bookings.empty? %>
           <p>You offered a job to <%= @worker.first_name %></p>        
         <% end %>
