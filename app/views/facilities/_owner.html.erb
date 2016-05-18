@@ -1,0 +1,6 @@
+<% unless owner.photo.nil? %>
+  <%= cl_image_tag owner.photo, width: 200, height: 300, crop: :fill %>
+<% else %>
+  <%= image_tag "http://placehold.it/120x160", class:"img-responsive img-thumbnail" %>
+<% end %>
+
