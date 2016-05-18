@@ -1,27 +1,25 @@
 class RegistrationsController < Devise::RegistrationsController
-
+  # after_filter :date_format
 
   # def new
   #   super
   # end
 
   # def create
-  #   # add custom create logic here
-  #   # @user = User.new(sign_up_params)
-  #   # @user.save
-  #   # if current_user == "I'm a owner"
-  #   #   redirect_to
-  #   # else
-  #   #   redirect_to edit_user_registration_path(@user)
-  #   # end
-  #   super
   # end
 
-  # def update
-  #   super
+  def update
+
+    @user.birth_date = DateTime.parse(params['user']['birth_date'])
+    @user.update(account_update_params)
+    @user.save
+    redirect_to worker_path(@user)
+
+  end
+
+  # def date_format
+  #   @user.birth_date = DateTime.parse(params['user']['birth_date'])
   # end
-
-
 
   protected
 
@@ -41,6 +39,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def account_update_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :photo, :photo_cache, :position)
+    params.require(:user).permit(:first_name, :last_name, :photo, :photo_cache, :position, :birth_place, :description, :min_wage, :address, :mobility_radius, :on_duty, :position, :social_security_number, :telephone, :birth_date)
   end
 end
