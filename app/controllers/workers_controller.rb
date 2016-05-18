@@ -5,4 +5,8 @@ class WorkersController < ApplicationController
     @workers = User.where(on_duty: true).where(address: params[:location]).where(position: params[:position])
   # Compléter avec la date demandée par l'employeur.
   end
+
+  def show
+    @worker = User.find(params[:id])
+  end
 end
