@@ -1,3 +1,33 @@
 // Place all the styles related to the facilities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.header-inline {
+  display: flex;
+  align-items: center;
+  a, h1 {
+    flex: 0 1 auto;
+  }
+}
+
+.container-photos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+
+.container h1 {
+    color: #96866B;
+    padding: 10px;
+}
+
+.btn-primary {
+  margin-top: 10px;
+}
+
+.show-owner container {
+  background-color: #E6E6E6;
+}

@@ -1,11 +1,12 @@
 class FacilitiesController < ApplicationController
-  before_action :set_facility, only: [:edit, :update, :destroy]
+  before_action :set_facility, only: [:edit, :show, :update, :destroy]
 
   def index
     @facilities = Facility.all
   end
 
   def show
+    # @worker = Facility.user
   end
 
   def new
