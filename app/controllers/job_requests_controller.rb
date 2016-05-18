@@ -12,7 +12,12 @@ class JobRequestsController < ApplicationController
     @jobrequest.end_time = @jobrequest.start_time + 1.day
     @jobrequest.max_price ||= 1
     if @jobrequest.save
-      redirect_to workers_path(staff_size: @jobrequest.staff_size, location: "Paris", position: @jobrequest.position) #rajouter l'argument @jobrequest pour faire passer les params
+      session[:jobrequest_id] = @jobrequest.id
+      session[:jobrequest_start] = @jobrequest.start_time
+      session[:jobrequest_position] = @jobrequest.position
+      session[:jobrequest_location] = @jobrequest.location
+      session[:jobrequest_staff_size] = @jobrequest.staff_size
+      redirect_to workers_path(staff_size: @jobrequest.staff_size, location: @jobrequest.location, position: @jobrequest.position) #rajouter l'argument @jobrequest pour faire passer les params
     else
       render '/'
     end 
@@ -22,6 +27,6 @@ class JobRequestsController < ApplicationController
   private
 
   def jobreq_params
-    params.require(:job_request).permit(:position)
+    params.require(:job_request).permit(:position, :location)
   end
 end

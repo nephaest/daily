@@ -16,7 +16,7 @@ class FacilitiesController < ApplicationController
     @facility = Facility.new(facility_params)
     @facility.user = current_user
     if @facility.save
-      redirect_to user_path(current_user)
+      redirect_to facility_path(@facility)
     else
       render :new
     end
