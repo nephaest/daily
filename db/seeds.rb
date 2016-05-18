@@ -25,7 +25,7 @@ min_wages =  [800, 900, 1000, 1100, 1200, 1500]
 cities = ["Paris", "Versailles", "Montreuil", "Clamart", "Cergy", "Nanterre"]
 user_mobility = [2, 5, 10, 25, 50]
 facility_categories = ["Hotel 1-2-3 *", "Hotel 4-5 *", "Evenementiel", "Restaurantion Gastronomique", "traiteur", "Brasserie", "Bar", "Restauration Rapide", "Camping", "Discothèque"]
-company_sizes = ['1', '2 - 9', '10 - 49', '50 - 199', '200+']
+company_sizes = Facility::COMPANY_SIZES
 
 cities.each do |city|
   positions.each do |position|
@@ -39,7 +39,7 @@ cities.each do |city|
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       birth_date = Faker::Date.between(50.years.ago, 16.years.ago)
-      User.create(
+      u = User.create(
         first_name: first_name,
         last_name: last_name,
         birth_date: birth_date,
@@ -51,10 +51,10 @@ cities.each do |city|
         password: "instantdaily",
         password_confirmation: "instantdaily",
         mobility_radius: user_mobility.sample,
-        telephone: Faker::PhoneNumber.phone_number,
+        telephone: Faker::PhoneNumber.cell_phone,
         on_duty: true,
         social_security_number: generate_social_security_number(birth_date),
-        photo: photo_url
+        remote_photo_url: photo_url
       )
     end
   end
@@ -84,7 +84,7 @@ cities.each do |city|
       address: city,
       mobility_radius: nil,
       on_duty: false,
-      photo: photo_url
+      remote_photo_url: photo_url
     )
     facility = Facility.create(
       name: Faker::Company.name,
@@ -96,7 +96,7 @@ cities.each do |city|
       website_url: Faker::Internet.url,
       description: Faker::Lorem.paragraphs.join,
       user: employer,
-      photo: ""
+      remote_photo_url: "https://source.unsplash.com/900x300/?#{ %w(hotel restaurant club bar).sample }"
     )
   end
 end
