@@ -1,0 +1,34 @@
+<div class="wrapper-profile">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="container-header">
+          <div class="header-inline">
+            <h1><%= @facility.name %></h1>
+            <%= link_to "Contact me", "#" ,class:"btn btn-primary", id:"contact" %>
+          </div>
+      </div>
+      <div class="container-photos">
+        <% if @facility.photo.nil? %>
+        <%= cl_image_tag @facility.photo, height: 300, width: 800, crop: :fill %>
+      <% else %>
+        <%= image_tag "restaurant.jpeg", class:"img-responsive img-thumbnail" %>
+      <% end %>
+        <div>
+          <%= render 'owner', owner: @facility.user if @facility.user %>
+        </div>
+      </div>
+        <!-- image link -->
+      </div>
+      <div class="col-xs-12">
+      <br>
+        <p><strong>Owner:</strong> <%= @facility.user.first_name.capitalize %> <%= @facility.user.last_name.upcase %></p>
+        <p><strong>Category:</strong> <%= @facility.category.capitalize %></p>
+      </div>
+    </div>
+      <div class="description-part">
+        <h5><strong>Description:</strong></h5>
+        <p class="text-justify"><%= @facility.description %></p>
+    </div>
+  </div>
+</div>
