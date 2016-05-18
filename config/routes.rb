@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   root to: 'pages#home'
   resources :workers, only: [:index, :show] do
-    resources :bookings
+    resources :bookings, only: [:create]
   end
   resources :facilities, only: [:show, :new, :create, :edit, :update]
   resources :job_requests, only: [:create]

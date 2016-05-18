@@ -12,7 +12,7 @@
             <%= f.input :siret %>
             <%= f.input :creation_date, as: :string, required: true, input_html: {class: 'creation_date'} %>
             <%= f.input :address %>
-            <%= f.input :size %>
+            <%= f.input :size, collection: ['1', '2 - 9', '10 - 49', '50 - 199', '200+']%>
             <%= f.input :category %>
             <%= f.input :website_url %>
             <%= f.input :description %>
