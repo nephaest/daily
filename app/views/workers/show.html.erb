@@ -1,0 +1,29 @@
+<div class="wrapper-profile">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-3 col-sm-offset-3">
+        <!-- image link -->
+        <% if @worker.photo.nil? %>
+          <%= cl_image_tag @worker.photo, height: 300, width: 200, crop: :fill %>
+        <% else %>
+          <%= image_tag "http://placehold.it/250x300", class:"img-responsive img-thumbnail" %>
+        <% end %>
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <h1><%= @worker.first_name %> <%= @worker.last_name %> </h1>
+        <p>Position: <%= @worker.position %></p>
+        <p>Location: <%= @worker.address %></p>
+        <p>Email: <%= @worker.email %></p>
+        <%= link_to "Hire",  %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <div class="description-part">
+          <h5>Description:</h5>
+          <p class="text-justify"><%= @worker.description %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
