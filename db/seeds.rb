@@ -19,7 +19,10 @@ facility_categories = ["Hotel 1-2-3 *", "Hotel 4-5 *", "Evenementiel", "Restaura
 
 User.destroy_all
 Facility.destroy_all
+  number = 1
 50.times do |num|
+
+  number += 1
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -34,7 +37,8 @@ Facility.destroy_all
     mobility_radius: user_mobility.sample,
     telephone: Faker::PhoneNumber.phone_number,
     on_duty: true,
-    social_security_number: random_social_security_number
+    social_security_number: random_social_security_number,
+    photo: ""
   )
   user.save!
 end
