@@ -73,9 +73,24 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+
+      <% if  user_signed_in? %>
+        <li>
+          <%= link_to worker_path(current_user.id) do %>
+            <i class="fa fa-user"></i> <%= t ".profile", default: "Profile" %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa fa-sign-out"></i>  <%= t ".sign_out", default: "Log out" %>
+          <% end %>
+        </li>
+      <% else %>
         <li><%= link_to t(".sign_up", default: "Become an extra"), new_user_registration_path%></li>
         <li><%= link_to t(".sign_up", default: "Sign-up"), new_user_registration_path%></li>
         <li><%= link_to t(".sign_in", default: "Login"), new_user_session_path %></li>
+      <% end %>
+
       </ul>
     </div>
   </div>

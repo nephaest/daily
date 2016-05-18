@@ -21,4 +21,16 @@ $(document).ready(function() {
     format: "dd/mm/yyyy",
 
     });
+
+    var start_date_3 = new Date ('today');
+    var end_date_3 = new Date('2016-12-24');
+  $('.search_date').datepicker({
+
+    startDate: start_date_2,
+    endDate: end_date_2,
+    format: "dd/mm/yyyy",
+
+    });
+
+
 })
