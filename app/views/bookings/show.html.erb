@@ -1,0 +1,16 @@
+<div class="wrapper-user">
+  <div class="container">
+    <div class="row col-xs-12">
+
+      <% @bookings.each do |booking| %>
+
+        <p>hello</p><%= booking.user_id %>
+        <p>You have a new pending booking</p>
+        <%= booking.user_id %>
+        <p>at this restaurant</p>
+        <%= booking.facility_id %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

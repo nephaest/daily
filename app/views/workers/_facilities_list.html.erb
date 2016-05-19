@@ -18,7 +18,7 @@
   </div>
   <ul class="list-inline product-controls hidden-sm hidden-xs">
     <li><%= link_to icon('eye'), facility_path(facility) %></li>
-    <li><%= link_to icon('users') %></li>
+    <li><%= link_to icon('users'), worker_bookings_path(current_user) %></li>
     <%if current_user == @worker %>
     <li><%= link_to icon('pencil'), edit_facility_path(facility)%></li>
     <%end%>
@@ -26,3 +26,5 @@
 </div>
 
 <% end %>
+
+

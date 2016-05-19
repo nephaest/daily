@@ -1,10 +1,7 @@
 class JobRequestsController < ApplicationController
   skip_before_action :authenticate_user!, only: :create
 
-  def index
-  end
-  def show
-  end
+
 
   def create
     if jobreq_params[:position] == "" || jobreq_params[:location] == ""
@@ -32,6 +29,6 @@ class JobRequestsController < ApplicationController
   private
 
   def jobreq_params
-    params.require(:job_request).permit(:position, :location)
+    params.require(:job_request).permit(:position, :id, :location)
   end
 end
