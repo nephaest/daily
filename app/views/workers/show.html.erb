@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <% if @worker.id == current_user.id %>
+    <% if @worker == current_user %>
       <%= render 'facilities_list' %>
     <% end %>
   </div>
