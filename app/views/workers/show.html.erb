@@ -1,43 +1,56 @@
-<div class="wrapper-profile">
-  <div class="row">
-    <div class="container">
-      <div class="col-xs-12 col-sm-3 col-sm-offset-3">
-        <div class="card", id="profile-picture", style="background: url('<%= @worker.photo %>')">
-
-        </div>
-
-      <div class="col-xs-12 col-sm-3">
-      <h1><%= @worker.first_name.capitalize %> <%= @worker.last_name.upcase %> </h1>
-      <p><strong>Position:</strong> <%= @worker.position %></p>
-      <p><strong></strong>Location: <%= @worker.address %></p>
-      <p>Email: <%= @worker.email %></p>
-      <p>Address: <%= @worker.address %></p>
-      <p>On duty: <%= @worker.on_duty %></p>
-      <% if current_user.owner? %>
-        <%= link_to "Hire", worker_bookings_path(worker_id: @worker.id), method: :post, class:"btn btn-primary" %>
-      <% end %>
-
-      <% if current_user == @worker %>
-        <%= link_to "Edit", edit_worker_path, class:"btn btn-success" %>
-
-      <% end %>
-      <% unless @worker.bookings.empty? %>
-      <!-- faire correspondre le booking avec le user en question et le current user -->
-        <p>You offered a job to <%= @worker.first_name %></p>
-      <% end %>
-    </div>
+<div class="wrapper-user">
+  <div class="container">
+    <div class="row col-xs-12">
+      
     </div>
     <div class="row">
-      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-        <div class="description-part">
-          <h5>Description:</h5>
-          <p class="text-justify"><%= @worker.description %></p>
+      <div class="col-xs-12 col-sm-3 col-sm-offset-3">
+        <!-- image link -->
+        <% if !@worker.photo.nil? %>
+          <%= cl_image_tag @worker.photo, height: 300, width: 250, crop: :fill %>
+        <% else %>
+          <%= image_tag "http://placehold.it/250x300", class:"img-responsive img-thumbnail" %>
+        <% end %>
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <div class="user-details">
+          <h1 class="last_name"><%= @worker.last_name.upcase %></h1>
+          <h2 class="first_name"><%= @worker.first_name.capitalize %></h2>
+          <p><strong>Position:</strong> <%= @worker.position %></p>
+          <p><strong></strong>Location: <%= @worker.address %></p>
+          <p>Email: <%= @worker.email %></p>
+          <p>Address: <%= @worker.address %></p>
+          <p>On duty: <%= @worker.on_duty %></p>
         </div>
       </div>
     </div>
-    <% if @worker.id == current_user.id %>
-      <%= render 'facilities_list' %>
-    <% end %>
+    <div class="profile-btn">
+      <div class="row">
+        <div class="row col-xs-12 col-sm-6 col-sm-offset-3">
+            <% if current_user.owner? %>
+              <%= link_to "Hire", worker_bookings_path(worker_id: @worker.id), method: :post, class:"btn btn-primary" %>
+            <% end %>
+            <% if current_user == @worker %>
+              <%= link_to "Edit", edit_worker_path, class:"btn btn-success" %>
+            <% end %>
+          <% unless @worker.bookings.empty? %>
+          <!-- faire correspondre le booking avec le user en question et le current user -->
+            <p>You offered a job to <%= @worker.first_name %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+          <div class="description-part">
+            <h5>Description:</h5>
+            <p class="text-justify"><%= @worker.description %></p>
+          </div>
+        </div>
+      </div>
+      <% if @worker == current_user %>
+        <%= render 'facilities_list' %>
+      <% end %>
   </div>
 </div>
 

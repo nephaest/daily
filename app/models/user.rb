@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
     facilities.any?
   end
 
+
   #2do: plan to manage the off_duties with rules to make it as user friendly as possible
   def available?(date)
     availability.occurs_at?(date)
@@ -45,11 +46,14 @@ class User < ActiveRecord::Base
     availability.remove_exception_time(date)
   end
 
+
   private
 
   def social_security_number_is_valid
     #2do may add the check between some of the next digits and the birth place
-    if social_security_number.nil? && !owner?
+
+    if social_security_number.nil? || !owner?
+
       errors.add :social_security_number, 'is mandatory'
     elsif social_security_number.length != 15 \
       || 97 - (social_security_number[0..12].to_i % 97) != social_security_number[13..14].to_i \
