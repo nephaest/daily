@@ -10,11 +10,14 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update
 
+    @user.min_wage = (account_update_params[:min_wage] * 100)
     @user.birth_date = DateTime.parse(params['user']['birth_date'])
     @user.update(account_update_params)
-    @user.save
-    redirect_to worker_path(@user)
-
+    if @user.update
+      redirect_to worker_path(@user)
+    else
+      render :new
+    end
   end
 
   # def date_format

@@ -1,11 +1,6 @@
 class JobRequestsController < ApplicationController
   skip_before_action :authenticate_user!, only: :create
 
-  def index
-  end
-  def show
-  end
-
   def create
     if jobreq_params[:position] == "" || jobreq_params[:location] == ""
       redirect_to workers_path
@@ -27,7 +22,6 @@ class JobRequestsController < ApplicationController
       end
     end
   end
-
 
   private
 
