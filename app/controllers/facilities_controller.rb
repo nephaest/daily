@@ -6,7 +6,7 @@ class FacilitiesController < ApplicationController
   end
 
   def show
-    # @worker = Facility.user
+
   end
 
   def new
