@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
-      <% if current_user.position == "I'm a owner"%>
+      <% if current_user.position == "I'm an owner"%>
 
         <%= simple_form_for(@worker, method: :put, url: worker_path, html: { autocomplete: 'on' }) do |f| %>
 
