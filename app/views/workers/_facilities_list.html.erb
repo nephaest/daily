@@ -3,10 +3,6 @@
 <h4>Your facilities:</h4>
 
 <div class="product">
-  <div class='product-upvote'>
-    <div class="product-arrow"></div>
-    <div class='product-count'>95</div>
-  </div>
   <%= link_to facility_path(facility) do %>
     <%= cl_image_tag facility.photo, width: 175, crop: :fill, class:"product-image hidden-xs" %>
   <% end %>
