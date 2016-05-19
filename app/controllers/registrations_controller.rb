@@ -9,7 +9,7 @@ class RegistrationsController < Devise::RegistrationsController
   # end
 
   def update
-
+    @user.min_wage = @user.min_wage * 100
     @user.birth_date = DateTime.parse(params['user']['birth_date'])
     @user.update(account_update_params)
     @user.save

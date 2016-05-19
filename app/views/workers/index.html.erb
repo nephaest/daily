@@ -24,6 +24,7 @@
         <% @workers.each do |worker| %>
           <div class="col-xs-12 col-sm-4">
               <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=worker.photo%>);">
+                <div id='price'><%=worker.min_wage/100%> €/h</div>
                 <% unless worker.bookings.empty? %>
                   <div class="card-category">Offer sent</div>
                 <% end %>
@@ -31,7 +32,8 @@
                   <h2><%= worker.first_name %></h2>
                   <p><%= worker.position %></p>
                 </div>
-                <img class="card-user avatar" src="user.jpg">
+
+
                 <%= link_to "", worker_path(worker), class:"card-link"  %>
               </div>
           </div>
