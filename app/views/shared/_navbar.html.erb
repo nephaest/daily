@@ -27,8 +27,13 @@
       <!-- Notification -->
       <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
         <div class="badge-container">
+
           <i class="fa fa-envelope-o"></i>
-          <div class="badge badge-blue">3</div>
+          <%if current_user.position == "I'm a owner"%>
+
+          <div class="badge badge-blue"><%=Booking.where(facility_id: current_user.facilities.first.id).length%></div>
+          <%else%>
+          <%end%>
         </div>
       <% end %>
 

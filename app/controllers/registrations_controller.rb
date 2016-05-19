@@ -14,9 +14,8 @@ class RegistrationsController < Devise::RegistrationsController
     @user.birth_date = DateTime.parse(params['user']['birth_date'])
     if @user.update(account_update_params)
       redirect_to worker_path(@user)
-    else
-      render :new
     end
+
   end
 
   # def date_format

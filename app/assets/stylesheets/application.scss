@@ -17,3 +17,8 @@
 @import "workers";
 @import "facilities";
 @import "registrations";
+
+
+#min-height {
+  min-height: calc(100vh - 150px);
+}
