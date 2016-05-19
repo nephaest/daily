@@ -51,9 +51,6 @@
           </div>
         </div>
       </div>
-      <% if @worker == current_user && @worker.owner? %>
-        <%= render 'facilities_list' %>
-      <% end %>
     <div class="wrapper-facility-show">
       <div class="container" id="restaurants">
         <% if @worker == current_user %>
