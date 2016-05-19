@@ -11,6 +11,15 @@
   background-color: #F4F4F4;
   border-radius: 5px;
 }
+#price {
+  background: #695E52;
+  position: relative;
+  text-align: right;
+  padding: 4px;
+  // top: 10px;
+  // right: 10px;
+}
+
 .card-user {
   position: absolute;
   right: 10px;

@@ -1,5 +1,5 @@
 <% unless owner.photo.nil? %>
-  <%= cl_image_tag owner.photo, class:"img-circle", height: 120, width: 120, crop: :fill %>
+  <%= cl_image_tag owner.photo, class:"img-circle", height: 120, width: 120, crop: :fill, id:"image-circle" %>
 <% else %>
   <%= image_tag "http://placehold.it/120x120", class:"img-circle" %>
 <% end %>
