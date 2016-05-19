@@ -2,10 +2,30 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .wrapper-card {
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .description-part {
   margin-top: 50px;
 }
 
+.wrapper-user {
+  margin-top: 50px;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  .last_name {
+    padding: 0px;
+    margin: 0px;
+  }
+  .first_name {
+    padding: 0px;
+    margin-top: 10px;  
+  }
+}
+
+.profile-btn {
+  margin-top: 20px;
+}
