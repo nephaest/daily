@@ -1,8 +1,5 @@
 <div class="wrapper-user">
   <div class="container">
-    <div class="row col-xs-12">
-
-    </div>
     <div class="row">
       <div class="col-xs-12 col-sm-3 col-sm-offset-3">
         <!-- image link -->
@@ -17,12 +14,18 @@
       </div>
       <div class="col-xs-12 col-sm-3">
         <div class="user-details">
+        <div class="text-center">
           <h1 class="last_name"><%= @worker.last_name.upcase %></h1>
           <h2 class="first_name"><%= @worker.first_name.capitalize %></h2>
-          <p><strong>Position:</strong> <%= @worker.position %></p>
-          <p><strong>Location:</strong> <%= @worker.address %></p>
-          <p><strong>Email:</strong> <%= @worker.email %></p>
-          <p><strong>Address:</strong> <%= @worker.address %></p>
+        </div>
+        <div class="user-infos">
+          <ul>
+            <li><p><strong>Position:</strong> <%= @worker.position %></p></li>
+            <li><p><strong>Location:</strong> <%= @worker.address %></p></li>
+            <li><p><strong>Email:</strong> <%= @worker.email %></p></li>
+            <li><p><strong>Address:</strong> <%= @worker.address %></p></li>
+          </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -40,21 +43,12 @@
             <p>You offered a job to <%= @worker.first_name %></p>
           <% end %>
         </div>
-        <div class="row">
-          <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-            <div class="description-part">
-              <h5>Description:</h5>
-              <p class="text-justify"><%= @worker.description %></p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 </div>
   <div class="wrapper-facility-show">
       <div class="container" id="restaurants">
-
         <% if @worker == current_user %>
           <%= render 'facilities_list' %>
         <% end %>
