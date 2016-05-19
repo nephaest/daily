@@ -23,12 +23,13 @@ class User < ActiveRecord::Base
   def owner?
     facilities.any?
   end
- 
+
   private
 
   def social_security_number_is_valid
     #2do may add the check between some of the next digits and the birth place
     if social_security_number.nil?
+
       errors.add :social_security_number, 'is mandatory'
     # elsif social_security_number.length != 15 \
     #   || 97 - (social_security_number[0..12].to_i % 97) != social_security_number[13..14].to_i \
