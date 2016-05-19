@@ -5,24 +5,29 @@
         <div class="container-header">
           <div class="header-inline">
             <h1><%= @facility.name %></h1>
-            <%= link_to "Contact me", "#" ,class:"btn btn-primary", id:"contact" %>
           </div>
       </div>
-      <div class="container-photos">
-        <% if @facility.photo.nil? %>
-        <%= cl_image_tag @facility.photo, height: 300, width: 800, crop: :fill %>
-      <% else %>
-        <%= image_tag "restaurant.jpeg", class:"img-responsive img-thumbnail" %>
-      <% end %>
-        <div>
+      <div class="container-restaurant">
+          <% if @facility.photo.nil? %>
+              <%= cl_image_tag @facility.photo, height: 300, width: 900, crop: :fill %>
+          <% else %>
+            <%= image_tag "restaurant.jpeg", class:"restaurant" %>
+          <% end %>
+        <div class="card text-center">
+          <div class="title">
+              <h4> <%= @facility.user.first_name.capitalize %> <%= @facility.user.last_name.upcase %></h4>
+          </div>
           <%= render 'owner', owner: @facility.user if @facility.user %>
+          <div class="contact-btn">
+              <%= link_to "Contact me", "#" ,class:"btn btn-primary", id:"contact" %>
+          </div>
         </div>
       </div>
         <!-- image link -->
       </div>
       <div class="col-xs-12">
       <br>
-        <p><strong>Owner:</strong> <%= @facility.user.first_name.capitalize %> <%= @facility.user.last_name.upcase %></p>
+
         <p><strong>Category:</strong> <%= @facility.category.capitalize %></p>
       </div>
     </div>
