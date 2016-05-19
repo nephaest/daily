@@ -5,6 +5,7 @@ $(document).ready(function() {
 
   $('.birth_date').datepicker({
 
+    startView: 2,
     startDate: start_date,
     endDate: end_date,
     format: "dd/mm/yyyy",
