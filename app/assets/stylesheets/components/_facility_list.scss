@@ -1,9 +1,10 @@
 .product {
+  background-color: white;
   display: flex;
   align-items: center;
   flex-direction: row;
   padding: 20px;
-  border-radius: 3px;
+  border-radius: 5px;
   transition: all 0.15s ease;
   a {
     text-decoration: none;
@@ -19,6 +20,7 @@
   font-size: 23px;
   margin-top: 0;
 }
+
 .product-body p {
   font-weight: lighter;
   color: #999999;
@@ -78,7 +80,7 @@
 .product-controls a {
   padding: 0 20px;
   font-size: 17px;
-  color: #E6E6E6;
+  color: #333333;
 }
 .product-controls a:hover {
   color: #D3473C !important
