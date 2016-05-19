@@ -36,7 +36,7 @@
       <div class="navbar-wagon-item">
         <div class="dropdown">
           <% if !current_user.photo.nil?  %>
-          <%= image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <%= image_tag current_user.photo, class: "avatar-navbar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <% else %>
           <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <%end%>
@@ -101,4 +101,4 @@
     </div>
   </div>
 </div>
-<br>
+
