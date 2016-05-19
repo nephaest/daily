@@ -14,10 +14,10 @@ class User < ActiveRecord::Base
 
   validates :first_name, :last_name, presence: true #:birth_date, :birth_place, :address, :position, presence: true
   validates :min_wage, numericality: { only_integer: true,  greater_than_or_equal_to: 7.50, allow_nil: true, message: 'must be greater than 7.5€ net/h' } # SMIC horaire 2016
-  validates_date :birth_date, before: lambda { 16.year.ago }, on: :update
+  validates_date :birth_date, before: lambda { 16.year.ago }, on: :update, allow_blank: true
   validates :description,  length: { minimum: 100, maximum: 1000, allow_nil: true }
   validates :mobility_radius, numericality: { only_integer: true,  greater_than_or_equal_to: 0, allow_nil: true }
-  validate :social_security_number_is_valid, on: :update
+  # validate :social_security_number_is_valid, on: :update
 
   def initialize(args = {})
     availability = IceCube::Schedule.new(Date.today) { |s| s.add_recurrence_rule IceCube::Rule.daily }
@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
     facilities.any?
   end
 
+
   #2do: plan to manage the off_duties with rules to make it as user friendly as possible
   def available?(date)
     availability.occurs_at?(date)
@@ -45,11 +46,14 @@ class User < ActiveRecord::Base
     availability.remove_exception_time(date)
   end
 
+
   private
 
   def social_security_number_is_valid
     #2do may add the check between some of the next digits and the birth place
-    if social_security_number.nil? && !owner?
+
+    if social_security_number.nil? || !owner?
+
       errors.add :social_security_number, 'is mandatory'
     elsif social_security_number.length != 15 \
       || 97 - (social_security_number[0..12].to_i % 97) != social_security_number[13..14].to_i \

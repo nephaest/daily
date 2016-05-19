@@ -40,16 +40,17 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-        <div class="description-part">
-          <h5>Description:</h5>
-          <p class="text-justify"><%= @worker.description %></p>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+          <div class="description-part">
+            <h5>Description:</h5>
+            <p class="text-justify"><%= @worker.description %></p>
+          </div>
         </div>
       </div>
-    </div>
-    <% if @worker.id == current_user.id %>
-      <%= render 'facilities_list' %>
-    <% end %>
+      <% if @worker == current_user %>
+        <%= render 'facilities_list' %>
+      <% end %>
   </div>
 </div>
+

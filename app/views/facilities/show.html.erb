@@ -8,13 +8,14 @@
           </div>
       </div>
       <div class="container-restaurant">
-          <% if @facility.photo.nil? %>
+          <% if !@facility.photo.nil? %>
+
               <%= cl_image_tag @facility.photo, height: 300, width: 900, crop: :fill %>
           <% else %>
             <%= image_tag "restaurant.jpeg", class:"restaurant" %>
           <% end %>
         <div class="card text-center">
-          <div class="title">
+          <div class="name_user">
               <h4> <%= @facility.user.first_name.capitalize %> <%= @facility.user.last_name.upcase %></h4>
           </div>
           <%= render 'owner', owner: @facility.user if @facility.user %>
@@ -37,3 +38,6 @@
     </div>
   </div>
 </div>
+
+
+
