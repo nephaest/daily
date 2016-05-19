@@ -42,3 +42,6 @@ end
 # Add our Gems here
 gem 'devise'
 gem 'validates_timeliness'
+gem 'geocoder'
+gem 'ice_cube'
+gem 'rails-assets-clndr', source: 'https://rails-assets.org'
