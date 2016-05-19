@@ -22,8 +22,13 @@ class WorkersController < ApplicationController
       @worker.update(description: params[:user][:description])
     end
     @worker.update(account_update_params)
+
+    if @worker.update(account_update_params)
     # no need for app/views/users/update.html.erb
-    redirect_to worker_path(@worker)
+      redirect_to worker_path(@worker)
+    else
+      render :new
+    end
   end
 
   private
