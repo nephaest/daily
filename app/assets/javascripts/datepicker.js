@@ -21,4 +21,10 @@ $(document).ready(function() {
     format: "dd/mm/yyyy",
 
     });
+
+
+  $('.search_date').datepicker({
+    format: "dd/mm/yyyy",
+    });
+
 })
