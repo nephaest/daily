@@ -1,0 +1,29 @@
+<h3>Offers</h3>
+
+<ul class= 'list-unstyled'>
+  <% @worker.bookings.each do |booking| %>
+  <li>
+    <div class="product">
+      <div class='product-upvote'>
+      </div>
+      <!-- <img src="kudoz.jpg" alt="kudoz" class="product-image hidden-xs"> -->
+      <div class='product-body'>
+        <h3><%= booking.facility.name %></h3>
+        <p>Contact: <%= booking.facility.user.first_name %> <%= booking.facility.user.last_name %></p>
+        <p>Date: <%= booking.job_request.start_time %></p>
+      </div>
+      <ul class="list-inline product-controls hidden-sm hidden-xs">
+      <% if booking.status == "accepted" %>
+        <p>Offre confirmée</p>
+      <% elsif booking.status == "rejected" %>
+        <p>Offre rejetée</p>
+      <% elsif booking.status == "pending" %> 
+        <li><%= link_to icon('check'), worker_booking_path(current_user.id, booking.id, status: "accepted"), method: :patch %></li>
+        <li><%= link_to icon('ban'), worker_booking_path(current_user.id, booking.id, status: "rejected"), method: :patch %></li>
+      <% end %>
+      </ul>
+    </div>
+
+  </li>
+  <% end %>
+</ul>  

@@ -27,6 +27,11 @@ class BookingsController < ApplicationController
     redirect_to root_path #trouver une solution pour rediriger
   end
 
+  def update
+    booking = Booking.find(params[:id])
+    booking.update(status: params[:status])
+    redirect_to worker_path(booking.user)
+  end
 
   private
 
