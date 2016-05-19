@@ -1,29 +1,32 @@
 <div class="wrapper-user">
   <div class="container">
-    <div class="row col-xs-12">
-      
-    </div>
     <div class="row">
       <div class="col-xs-12 col-sm-3 col-sm-offset-3">
         <!-- image link -->
-        <% if !@worker.photo.nil? %>
-          <%= cl_image_tag @worker.photo, height: 300, width: 250, crop: :fill %>
-        <% else %>
-          <%= image_tag "http://placehold.it/250x300", class:"img-responsive img-thumbnail" %>
-        <% end %>
+        <div class="card-profile-picture">
+          <% if !@worker.photo.nil? %>
+            <%= cl_image_tag @worker.photo, height: 300, width: 250, crop: :fill %>
+          <% else %>
+            <%= image_tag "http://placehold.it/250x300", class:"img-responsive img-thumbnail" %>
+          <% end %>
+        </div>
       </div>
       <div class="col-xs-12 col-sm-3">
         <div class="user-details">
-          <h1 class="last_name"><%= @worker.last_name.upcase %></h1>
-          <h2 class="first_name"><%= @worker.first_name.capitalize %></h2>
-          <p><strong>Position:</strong> <%= @worker.position %></p>
-          <p><strong></strong>Location: <%= @worker.address %></p>
-          <p>Email: <%= @worker.email %></p>
-          <p>Address: <%= @worker.address %></p>
-          <p>On duty: <%= @worker.on_duty %></p>
+          <div class="text-center">
+            <h1 class="last_name"><%= @worker.last_name.upcase %></h1>
+            <h2 class="first_name"><%= @worker.first_name.capitalize %></h2>
+          </div>
+        </div>
+        <div class="user-infos">
+          <ul>
+            <li><p><strong>Position:</strong> <%= @worker.position %></p></li>
+            <li><p><strong>Location:</strong> <%= @worker.address %></p></li>
+            <li><p><strong>Email:</strong> <%= @worker.email %></p></li>
+            <li><p><strong>Address:</strong> <%= @worker.address %></p></li>
+          </ul>
         </div>
       </div>
-    </div>
     <div class="profile-btn">
       <div class="row">
         <div class="row col-xs-12 col-sm-6 col-sm-offset-3">
@@ -36,7 +39,7 @@
             <% unless @worker.bookings.empty? %>
             <!-- faire correspondre le booking avec le user en question et le current user -->
             <p>You offered a job to <%= @worker.first_name %></p>
-          <% end %>
+            <% end %>
         </div>
       </div>
     </div>
@@ -51,6 +54,13 @@
       <% if @worker == current_user && @worker.owner? %>
         <%= render 'facilities_list' %>
       <% end %>
+    <div class="wrapper-facility-show">
+      <div class="container" id="restaurants">
+        <% if @worker == current_user %>
+          <%= render 'facilities_list' %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 
