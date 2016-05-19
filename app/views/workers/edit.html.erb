@@ -3,7 +3,29 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
+      <% if current_user.position == "I'm a owner"%>
 
+        <%= simple_form_for(@worker, method: :put, url: worker_path, html: { autocomplete: 'on' }) do |f| %>
+
+          <%= f.error_notification %>
+
+          <div class="form-inputs">
+            <%= f.input :email, autofocus: true %>
+            <%= f.input :first_name %>
+            <%= f.input :last_name %>
+            <%= f.input :password, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+            <%= f.input :password_confirmation %>
+            <%= f.input :photo %>
+            <% f.input :photo_cache, as: :hidden %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Update" %>
+          </div>
+        <% end %>
+
+
+      <% else %>
         <%= simple_form_for(@worker, method: :put, url: worker_path, html: { autocomplete: 'on' }) do |f| %>
 
           <%= f.error_notification %>
@@ -40,7 +62,7 @@
             <%= f.button :submit, "Update" %>
           </div>
         <% end %>
-
+      <% end %>
    </div>
   </div>
 </div>
