@@ -1,5 +1,6 @@
 class WorkersController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
+  before_action :set_worker, only: [:edit, :show]
 
   def index
     @workers = User.where(on_duty: true).where(address: params[:location]).where(position: params[:position])
@@ -7,11 +8,15 @@ class WorkersController < ApplicationController
   end
 
   def show
-    @worker = User.find(params[:id])
+    events = []
+    @worker.bookings.future.each do |booking|
+      events <<  "{ date: '#{booking.job_request.start_time.to_date}', title: \"#{booking.facility.name}\", url: '#{facility_url(booking.facility)}', location: \"#{booking.facility.address}\", contact: \"#{booking.facility.user.full_name}\" }"
+    end
+    @json_events = "[#{events.join(', ')}]"
+    puts @json_events
   end
 
   def edit
-    @worker = User.find(params[:id])
   end
 
   def update
@@ -27,6 +32,10 @@ class WorkersController < ApplicationController
   end
 
   private
+
+  def set_worker
+    @worker = User.find(params[:id])
+  end
 
   def sign_up_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :photo, :photo_cache, :position)

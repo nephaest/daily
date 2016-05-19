@@ -41,6 +41,9 @@
         </div>
       </div>
     </div>
+    <% if !@worker.owner? && @worker == current_user %>
+      <%= render 'shared/calendar_ui' %>
+    <% end %>
     <% if @worker.id == current_user.id %>
       <%= render 'facilities_list' %>
     <% end %>

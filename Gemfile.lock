@@ -192,6 +192,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
+    underscore-rails (1.8.3)
     validates_timeliness (4.0.2)
       timeliness (~> 0.3.7)
     warden (1.2.6)
@@ -229,6 +230,7 @@ DEPENDENCIES
   simple_form
   spring
   uglifier
+  underscore-rails
   validates_timeliness
 
 RUBY VERSION
