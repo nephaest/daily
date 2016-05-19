@@ -4,7 +4,7 @@
     <%= image_tag "logo.png" %>
   <% end %>
   
-  <% unless current_page?(root_path) || !current_user.owner?  %>
+  <% unless !user_signed_in? || current_page?(root_path) || !current_user.owner?  %>
     <div>
       <%= render 'shared/search' %>
     </div>
