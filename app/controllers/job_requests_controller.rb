@@ -25,7 +25,6 @@ class JobRequestsController < ApplicationController
     end
   end
 
-
   private
 
   def jobreq_params
