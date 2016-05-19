@@ -2,9 +2,7 @@
       <%= f.error_notification %>
       <%= f.input :position, collection: JobRequest::POSITIONS, label: false %>
       <%= f.input :location, collection: JobRequest::LOCATIONS, label: false %>
-      <%= f.input :start_time, as: :string, label: false, placeholder: 'start date', input_html: {class: 'search_date  form-control', id: 'datepicker'}  %>
-      <%= f.input :end_time, as: :string,  label: false, placeholder: 'end date', input_html: {class: 'search_date  form-control', id: 'datepicker'}  %>
-
+      <%= f.input :start_time, as: :string, label: false, placeholder: 'start date', input_html: {class: 'search_date  form-control'}  %>
       <%= f.button :submit, 'Find', class: "btn btn-primary", id: "find_button" %>
     <% end %>
 
