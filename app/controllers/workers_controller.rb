@@ -1,8 +1,8 @@
 class WorkersController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
-  def index
-    # @workers = User.all
+  def index(attributes = {})
+    @workers = User.all
     @workers = User.where(on_duty: true).where(address: params[:location]).where(position: params[:position])
   # Compléter avec la date demandée par l'employeur.
   end
