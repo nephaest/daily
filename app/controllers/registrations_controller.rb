@@ -29,7 +29,16 @@ class RegistrationsController < Devise::RegistrationsController
     elsif current_user.position == "I'm a job seeker"
       edit_user_registration_path(current_user)
     end
+  end
 
+  def after_sign_in_path_for(resource)
+    raise
+    if current_user.owner?
+      facility_path(current_user.facilities)
+    elsif current_user.position == "I'm a job seeker"
+      raise
+      worker_path(current_user.id)
+    end
   end
 
   private
