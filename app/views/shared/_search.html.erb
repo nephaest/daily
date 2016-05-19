@@ -1,8 +1,8 @@
     <%= simple_form_for(@jobrequest, html: { class: 'form-inline input-daterange input-group' }) do |f| %>
       <%= f.error_notification %>
-      <%= f.input :position, collection: JobRequest::POSITIONS, label: false %>
-      <%= f.input :location, collection: JobRequest::LOCATIONS, label: false %>
-      <%= f.input :start_time, as: :string, label: false, placeholder: 'start date', input_html: {class: 'search_date form-control datepicker'}  %>
+      <%= f.input :position, collection: JobRequest::POSITIONS, prompt: "What do you need?", label: false %>
+      <%= f.input :location, collection: JobRequest::LOCATIONS, prompt: "Select your location", label: false %>
+      <%= f.input :start_time, as: :string, label: false, placeholder: 'start date', input_html: {class: 'search_date  form-control datepicker'}  %>
       <%= f.button :submit, 'Find', class: "btn btn-primary", id: "find_button" %>
     <% end %>
 
