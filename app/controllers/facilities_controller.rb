@@ -24,6 +24,7 @@ class FacilitiesController < ApplicationController
   end
 
   def edit
+    @facility = Facility.find(params[:id])
   end
 
   def update
@@ -41,6 +42,6 @@ class FacilitiesController < ApplicationController
   end
 
   def facility_params
-    params.require(:facility).permit(:siret, :name, :creation_date, :address, :size, :category, :website_url, :description)
+    params.require(:facility).permit(:siret, :photo, :id, :name, :creation_date, :address, :size, :category, :website_url, :description)
   end
 end
