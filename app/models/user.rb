@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  after_initialize :default_availability
 
   mount_uploader :photo, PhotoUploader
   devise :database_authenticatable, :registerable,
@@ -13,16 +14,11 @@ class User < ActiveRecord::Base
   has_many :facilities, dependent: :destroy
 
   validates :first_name, :last_name, presence: true #:birth_date, :birth_place, :address, :position, presence: true
-  validates :min_wage, numericality: { only_integer: true,  greater_than_or_equal_to: 750, allow_nil: true, message: 'must be greater than 7.5€ net/h' } # SMIC horaire 2016
-  # validates_date :birth_date, before: lambda { 16.year.ago }, on: :update
+  validates :min_wage, numericality: { only_integer: true,  greater_than_or_equal_to: 7.50, allow_nil: true, message: 'must be greater than 7.5€ net/h' } # SMIC horaire 2016
+  validates_date :birth_date, before: lambda { 16.year.ago }, on: :update, unless: :owner?
   validates :description,  length: { minimum: 100, maximum: 1000, allow_nil: true }
   validates :mobility_radius, numericality: { only_integer: true,  greater_than_or_equal_to: 0, allow_nil: true }
-  # validate :social_security_number_is_valid, on: :update
-
-  def initialize(args = {})
-    availability = IceCube::Schedule.new(Date.today) { |s| s.add_recurrence_rule IceCube::Rule.daily }
-    super(args)
-  end
+  validate :social_security_number_is_valid, on: :update, unless: :owner?
 
   def full_name
     "#{first_name} #{last_name}"
@@ -48,6 +44,10 @@ class User < ActiveRecord::Base
 
 
   private
+
+  def default_availability
+    self.availability = IceCube::Schedule.new(Date.today) { |s| s.add_recurrence_rule IceCube::Rule.daily }
+  end
 
   def social_security_number_is_valid
     #2do may add the check between some of the next digits and the birth place

@@ -3,6 +3,6 @@
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require moment
-//= require clndr
-
+//= require underscore
+//=require clndr
 //= require_tree .
