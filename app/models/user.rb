@@ -15,10 +15,10 @@ class User < ActiveRecord::Base
 
   validates :first_name, :last_name, presence: true #:birth_date, :birth_place, :address, :position, presence: true
   validates :min_wage, numericality: { only_integer: true,  greater_than_or_equal_to: 7.50, allow_nil: true, message: 'must be greater than 7.5€ net/h' } # SMIC horaire 2016
-  validates_date :birth_date, before: lambda { 16.year.ago }, on: :update, unless: :owner?
+
   validates :description,  length: { minimum: 100, maximum: 1000, allow_nil: true }
   validates :mobility_radius, numericality: { only_integer: true,  greater_than_or_equal_to: 0, allow_nil: true }
-  validate :social_security_number_is_valid, on: :update, unless: :owner?
+  # validate :social_security_number_is_valid, on: :update, unless: :owner?
 
   def full_name
     "#{first_name} #{last_name}"
