@@ -5,7 +5,7 @@
         <!-- image link -->
         <div class="card-profile-picture">
           <% if !@worker.photo.nil? %>
-            <%= cl_image_tag @worker.photo, height: 300, width: 250, crop: :fill %>
+            <%= cl_image_tag @worker.photo, height: 300, width: 250, crop: :fill,  class:"img-responsive img-thumbnail" %>
           <% else %>
             <%= image_tag "http://placehold.it/250x300", class:"img-responsive img-thumbnail" %>
           <% end %>
@@ -47,6 +47,7 @@
         <div class="col-xs-12 col-sm-6 col-sm-offset-3">
           <div class="description-part">
             <h5>Description:</h5>
+            <p><%=@worker.description%></p>
             <p class="text-justify"><%= @worker.description %></p>
           </div>
         </div>
@@ -63,8 +64,6 @@
     <% if !@worker.owner? && @worker == current_user %>
       <%= render 'shared/calendar_ui' %>
     <% end %>
-    <% if @worker.id == current_user.id %>
-      <%= render 'facilities_list' %>
-    <% end %>
+
   </div>
 </div>

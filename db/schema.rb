@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20160519090746) do
     t.date     "birth_date"
     t.string   "birth_place"
     t.text     "description"
-    t.string   "position"
+    t.string   ""
     t.integer  "min_wage"
     t.string   "address"
     t.integer  "mobility_radius"

@@ -1,7 +1,6 @@
 class BookingsController < ApplicationController
   def index
     @bookings = Booking.where(facility_id: find_booking_by_owner)
-
   end
   def show
     @bookings =  Booking.find_by_facility_id(find_booking_by_owner)
@@ -37,7 +36,9 @@ class BookingsController < ApplicationController
 
   def find_booking_by_owner
     u = User.find(params[:worker_id])
-    f = Facility.find_by_user_id(u.id)
+    p "USER"
+    p u.id
+    f = Facility.find_by user_id: u.id
     return f.id
   end
 

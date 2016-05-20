@@ -5,7 +5,7 @@
 <% @bookings.each do |booking|%>
 
 <%facility = Facility.find(booking.facility_id)%>
-<%worker =User.find(booking.user_id) %>
+<%worker = User.find(booking.user_id) %>
 
   <div class="product">
     <%= link_to facility_path(facility) do %>
@@ -28,10 +28,10 @@
       <p><%= worker.position %></p>
     </div>
     <div class='product-body'>
-      <%= link_to "" do %>
+
         <h4><%= worker.min_wage / 100 %>€/h</h4>
         <p>price</p>
-      <% end %>
+
     </div>
     <div class='product-body'>
       <%= link_to "" do %>
