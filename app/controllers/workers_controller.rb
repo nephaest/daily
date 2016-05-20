@@ -31,7 +31,7 @@ class WorkersController < ApplicationController
 
     if @worker.update(account_update_params)
       @worker.update(min_wage: (account_update_params[:min_wage].to_i * 100))
-raise
+
     # no need for app/views/users/update.html.erb
 
       redirect_to worker_path(@worker)
