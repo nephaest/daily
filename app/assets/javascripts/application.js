@@ -4,5 +4,5 @@
 //= require bootstrap-datepicker
 //= require moment
 //= require underscore
-//=require clndr
+//= require clndr
 //= require_tree .
