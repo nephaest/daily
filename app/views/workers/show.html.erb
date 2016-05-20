@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="call-to-action">
-           <% if current_user.owner? && current_user != @worker %>
+            <% if current_user.owner? && current_user != @worker %>
               <%= link_to "Hire", worker_bookings_path(worker_id: @worker.id), method: :post, class:"btn btn-primary" %>
             <% end %>
             <% if current_user == @worker %>
@@ -46,20 +46,15 @@
       </div>
     </div>
   </div>
-</div>
-<div class="wrapper-facility-show">
-  <div class="container" id="restaurants">
-    <% if @worker == current_user && @worker.owner? %>
-      <%= render 'facilities_list' %>
-    <% elsif @worker == current_user %>
-      <%= render 'joblist' %>
-    <% end %>
-  </div>
-  <div class="container" id="calendar">
-    <% if !@worker.owner? && @worker == current_user %>
-      <%= render 'shared/calendar_ui' %>
-    <% end %>
-
+  <div class="wrapper-facility-show">
+    <div class="container" id="restaurants">
+      <% if @worker == current_user && @worker.owner? %>
+        <%= render 'facilities_list' %>
+      <% elsif @worker == current_user %>
+        <%= render 'joblist' %>
+        <%= render 'shared/calendar_ui' %>
+      <% end %>
+    </div>
   </div>
 </div>
 
