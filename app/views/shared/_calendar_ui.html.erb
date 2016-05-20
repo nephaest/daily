@@ -9,7 +9,7 @@
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
-
+<<JS
     function format_event(event) {
       res = '<li><a href="' + event.url + '">' +  event.title + '</a>';
       res += '<p>Contact: ' + event.contact + '</p>'
@@ -44,5 +44,6 @@
         }
       });
     });
+>>
   <% end %>
 <% end %>
