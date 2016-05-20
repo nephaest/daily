@@ -6,14 +6,13 @@
           <div class="header-inline">
             <h1><%= @facility.name %></h1>
           </div>
-      </div>
+        </div>
       <div class="container-restaurant">
-          <% if !@facility.photo.nil? %>
-
-              <%= cl_image_tag @facility.photo, height: 300, width: 900, crop: :fill %>
-          <% else %>
-            <%= image_tag "restaurant.jpeg", class:"restaurant" %>
-          <% end %>
+        <% if !@facility.photo.nil? %>
+            <%= cl_image_tag @facility.photo, height: 300, width: 900, crop: :fill %>
+        <% else %>
+          <%= image_tag "restaurant.jpeg", class:"restaurant" %>
+        <% end %>
         <div class="card text-center">
           <div class="name_user">
               <h4> <%= @facility.user.first_name.capitalize %> <%= @facility.user.last_name.upcase %></h4>
@@ -27,16 +26,44 @@
         <!-- image link -->
       </div>
       <div class="col-xs-12">
-      <br>
-
-        <p><strong>Category:</strong> <%= @facility.category.capitalize %></p>
+        <div class="container-category">
+          <p><strong>Category:</strong> <%= @facility.category.capitalize %></p>
+          <p><strong>Address:</strong> <%= @facility.address %></p>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="container-description">
+          <p><strong>Description:</strong> <%= @facility.description %></p>
+        </div>
       </div>
     </div>
-      <div class="description-part">
-        <h5><strong>Description:</strong></h5>
-        <p class="text-justify"><%= @facility.description %></p>
-    </div>
   </div>
+</div>
+<div class="wrapper-facility">
+  <div id="facility-map" style="width: 100%; height: 500px; margin-top: 25px;">
+  </div>
+
+  <%= content_for :after_js do %>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+  <script type="text/javascript">
+    var myLatlng = new google.maps.LatLng(48.852937,2.364178);
+
+    var myOptions = {
+    zoom: 14,
+    center: myLatlng,
+    scrollwheel: false,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]
+    };
+
+    var map = new google.maps.Map(document.getElementById('facility-map'), myOptions);
+    var marker = new google.maps.Marker({
+    position: myLatlng,
+    map: map,
+    title:"Find us here!"
+    });
+    </script>
+  <% end %>
 </div>
 
 
