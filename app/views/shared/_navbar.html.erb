@@ -24,20 +24,7 @@
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
 
-      <!-- Notification -->
-      <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
-        <div class="badge-container">
-
-          <i class="fa fa-envelope-o"></i>
-          <%if current_user.position == "I'm a owner"%>
-
-          <div class="badge badge-blue"><%#Booking.where(facility_id: current_user.facilities.first.id).length%></div>
-          <%else%>
-          <%end%>
-        </div>
-      <% end %>
-
-      <!-- Profile picture and dropdown -->
+  <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
           <% if !current_user.photo.nil?  %>
