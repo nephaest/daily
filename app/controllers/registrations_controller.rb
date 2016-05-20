@@ -10,10 +10,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update
 
-    @user.min_wage = (account_update_params[:min_wage] * 100)
+    @user.min_wage  = (account_update_params[:min_wage] * 100)
     @user.birth_date = DateTime.parse(params['user']['birth_date'])
+    raise
     if @user.update(account_update_params)
       redirect_to worker_path(@user)
+
     else
       render :new
     end
@@ -35,11 +37,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_in_path_for(resource)
-    raise
+
     if current_user.owner?
       facility_path(current_user.facilities)
     elsif current_user.position == "I'm a job seeker"
-      raise
       worker_path(current_user.id)
     end
   end

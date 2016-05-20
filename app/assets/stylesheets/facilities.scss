@@ -2,8 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .wrapper-facility {
-  background-color: #FBF9F6;
-  min-height: 700px;
+  background-color: white;
 }
 
 .header-inline {
@@ -70,4 +69,50 @@
   height: 300px;
   width: 900px;
 }
+
+.container-category {
+  border: 1px solid #DFDFDF;
+  background-color: #F4F4F4;
+  border-radius: 5px;
+  margin-top: 9px;
+  display: flex;
+  justify-content: space-between;
+  p {
+    padding: 20px;
+    margin-top: 7px;
+  }
+}
+
+.container-description {
+  border: 1px solid #DFDFDF;
+  background-color: #F4F4F4;
+  border-radius: 5px;
+  margin-top: 9px;
+  p {
+    padding: 20px;
+    margin-top: 10px;
+  }
+}
+
+.facility-map {
+  background-color: #FBF9F6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
