@@ -28,9 +28,12 @@ class BookingsController < ApplicationController
   end
 
   def update
-    booking = Booking.find(params[:id])
-    booking.update(status: params[:status])
-    redirect_to worker_path(booking.user)
+    @booking = Booking.find(params[:id])
+    @booking.update(status: params[:status])
+    respond_to do |format|
+      format.html { redirect_to worker_path(@booking.user) }
+      format.js  # <-- will render `app/views/bookings/update.js.erb`
+    end
   end
 
   private

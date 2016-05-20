@@ -1,0 +1,6 @@
+<% if @booking.status == 'rejected' %>
+  $('#booking-<%= @booking.id %>').slideUp();
+<% elsif @booking.status == 'accepted' %>
+  var render = $("<%= j render 'confirmed', booking: @booking %>")
+  $('#booking-<%= @booking.id %> #booking-options').html(render)
+<% end %>
