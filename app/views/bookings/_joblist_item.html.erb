@@ -3,7 +3,7 @@
     <div class='product-body'>
       <h3><%= booking.facility.name %></h3>
       <p>Contact: <%= booking.facility.user.first_name %> <%= booking.facility.user.last_name %></p>
-      <p>Date: <%= booking.job_request.start_time %></p>
+      <p>Date: <%= booking.job_request.start_time.strftime("%Y-%m-%d") %></p>
     </div>
     <div id='booking-options'>
       <% if booking.status == "accepted" %>
