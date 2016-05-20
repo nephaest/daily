@@ -18,7 +18,7 @@
         <p><%= facility.address %></p>
       </div>
 
-      <%= link_to facility_path(facility) do %>
+      <%= link_to worker_path(worker) do %>
         <%= cl_image_tag worker.photo, class:"product-image hidden-xs" %>
       <% end %>
       <div class='product-body'>
@@ -29,7 +29,7 @@
       </div>
       <div class='product-body'>
 
-          <h4><%= worker.min_wage / 100 %>€/h</h4>
+          <h4><%= worker.min_wage.to_i / 100  %>€/h</h4>
           <p>price</p>
 
       </div>
