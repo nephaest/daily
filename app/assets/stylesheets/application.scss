@@ -17,9 +17,6 @@
 @import "vendor/index";
 @import "workers";
 @import "facilities";
-@import "registrations";
+@import "registrations"
 
 
-#min-height {
-  min-height: calc(100vh - 150px);
-}
