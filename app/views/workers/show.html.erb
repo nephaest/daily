@@ -14,13 +14,11 @@
 
                <h1><%= @worker.last_name.upcase %></h1>
                <h2><%= @worker.first_name.capitalize %></h2>
-
+               <p><strong><%=  @worker.position %></strong></p>
              </div>
           </div>
 
-
           <div class="user-card-infos">
-
             <div class="user-infos">
                 <p><i class="fa fa-envelope" aria-hidden="true"></i> <%= @worker.email %></p>
 
@@ -34,6 +32,7 @@
                 </div>
             </div>
           </div>
+
           <div class="call-to-action">
             <% if current_user.owner? && current_user != @worker %>
               <%= link_to "Hire", worker_bookings_path(worker_id: @worker.id), method: :post, class:"btn btn-primary" %>
