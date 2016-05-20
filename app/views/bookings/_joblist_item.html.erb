@@ -1,0 +1,18 @@
+<li id='booking-<%= booking.id %>'>
+  <div class="product">
+    <div class='product-body'>
+      <h3><%= booking.facility.name %></h3>
+      <p>Contact: <%= booking.facility.user.first_name %> <%= booking.facility.user.last_name %></p>
+      <p>Date: <%= booking.job_request.start_time %></p>
+    </div>
+    <div id='booking-options'>
+      <% if booking.status == "accepted" %>
+        <%= render 'bookings/confirmed', booking: booking %>
+      <% elsif booking.status == "rejected" %>
+        <%= render 'bookings/denied' %>
+      <% elsif booking.status == "pending" %>
+        <%= render 'bookings/pending', booking: booking %>
+      <% end %>
+    </div>
+  </div>
+</li>
