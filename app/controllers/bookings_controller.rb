@@ -22,9 +22,9 @@ class BookingsController < ApplicationController
   end
 
   def destroy
+    u = Booking.find(params[:id]).user_id
     Booking.find(params[:id]).delete
-
-    redirect_to worker_bookings_path(params[:worker_id]) #trouver une solution pour rediriger
+    redirect_to worker_bookings_path(u) #trouver une solution pour rediriger
   end
 
   def update

@@ -36,7 +36,26 @@
           </div>
           <div class="call-to-action">
             <% if current_user.owner? && current_user != @worker %>
-              <%= link_to "Hire", worker_bookings_path(worker_id: @worker.id), method: :post, class:"btn btn-primary" %>
+              <%# link_to "Hire", , method: :create, class: "hidden", id: "createBooking"%>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="trigger">
+                Hire
+              </button>
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Job offer just sent</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Just wait the <%=@worker.first_name%>'s answer</p>                      </div>
+                    <div class="modal-footer">
+                      <a href="/workers/<%=current_user.id%>/bookings"><button type="button" class="btn btn-default">Views your bookings</button></a>
+                   <button type="button" onClick="history.go(-1);return true;" class="btn btn-primary">Return to you search</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <% end %>
             <% if current_user == @worker %>
               <%= link_to "Edit", edit_worker_path, class:"btn btn-success" %>
@@ -58,12 +77,15 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function() {
+      $('#trigger').on('click', function() {
+        $.ajax({
+          url: '<%= worker_bookings_path(worker_id: @worker.id) %>',
+          type: "POST"
+        })
+      })
+    })
+  </script>
+<% end %>
