@@ -32,6 +32,7 @@
                 </div>
             </div>
           </div>
+
           <div class="call-to-action">
            <% if current_user.owner? && current_user != @worker %>
               <%= link_to "Hire", worker_bookings_path(worker_id: @worker.id), method: :post, class:"btn btn-primary" %>
