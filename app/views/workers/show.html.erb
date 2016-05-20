@@ -18,9 +18,7 @@
              </div>
           </div>
 
-
           <div class="user-card-infos">
-
             <div class="user-infos">
                 <p><i class="fa fa-envelope" aria-hidden="true"></i> <%= @worker.email %></p>
 
@@ -59,7 +57,6 @@
     <% if !@worker.owner? && @worker == current_user %>
       <%= render 'shared/calendar_ui' %>
     <% end %>
-
   </div>
 </div>
 

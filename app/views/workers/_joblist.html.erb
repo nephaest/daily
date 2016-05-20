@@ -17,13 +17,13 @@
         <p>Offre confirmée</p>
       <% elsif booking.status == "rejected" %>
         <p>Offre rejetée</p>
-      <% elsif booking.status == "pending" %> 
+      <% elsif booking.status == "pending" %>
         <li><%= link_to icon('check'), worker_booking_path(current_user.id, booking.id, status: "accepted"), method: :patch %></li>
         <li><%= link_to icon('ban'), worker_booking_path(current_user.id, booking.id, status: "rejected"), method: :patch %></li>
       <% end %>
       </ul>
     </div>
-
   </li>
+  <br>
   <% end %>
-</ul>  
+</ul>
