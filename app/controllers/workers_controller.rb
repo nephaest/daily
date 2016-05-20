@@ -20,7 +20,7 @@ class WorkersController < ApplicationController
   end
 
   def update
-    @worker = User.find(current_user)
+    @worker = current_user
     @worker.min_wage = (account_update_params[:min_wage].to_i * 100)
     if params[:user][:description] == ""
     else
