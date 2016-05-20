@@ -7,40 +7,25 @@
 }
 
 .description-part {
-  margin-top: 50px;
+  margin-top: 27px;
 }
 
 .wrapper-user {
   background-color: #FBF9F6;
-  padding: 62px;
 }
 
-.user-details {
-  display: flex;
-  flex-direction: column;
-  .last_name {
-    padding: 0px;
-    margin: 0px;
-    color: #5A3C08;
-  }
-  .first_name {
-    padding: 0px;
-    margin-top: 10px;
-    color: #5A3C08;
-  }
-}
 
 .profile-btn {
   margin-top: 20px;
 }
 
 .wrapper-facility-show{
-  background-color: #DBD1C1;
+  background-color: #E5DED2;
   padding-bottom: 47px;
 }
 
 #restaurants h4 {
-  color: white;
+  color: rgb(41, 27, 2);
   padding: 10px;
 }
 
@@ -48,3 +33,29 @@
   margin-top: 40px;
 }
 
+#min-height {
+  min-height: 700px;
+}
+
+
+.user-card {
+  display: flex;
+  border: 1px solid rgba(200,200,200,1);
+  padding: 15px;
+  border-radius: 4px;
+  background-color: white;
+  justify-content: space-around;
+  &-img {
+    padding-right: 20px;
+  }
+}
+
+.user-details {
+  h1 {
+    font-size: 25px;
+  }
+  h2 {
+    font-size: 20px;
+    margin-top: 0;
+  }
+}
