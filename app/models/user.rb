@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   end
 
   def owner?
-    facilities.any?
+    owner
   end
 
 
