@@ -20,15 +20,18 @@ class WorkersController < ApplicationController
   end
 
   def update
+
     @worker = current_user
-    @worker.min_wage = (account_update_params[:min_wage].to_i * 100)
-    if params[:user][:description] == ""
-    else
-      @worker.update(description: params[:user][:description])
-    end
+
+      if params[:user][:description] == ""
+      else
+        @worker.update(description: params[:user][:description])
+      end
     @worker.update(account_update_params)
 
     if @worker.update(account_update_params)
+      @worker.update(min_wage: (account_update_params[:min_wage].to_i * 100))
+raise
     # no need for app/views/users/update.html.erb
 
       redirect_to worker_path(@worker)

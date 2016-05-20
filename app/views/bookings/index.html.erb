@@ -9,7 +9,7 @@
 
     <div class="product">
       <%= link_to facility_path(facility) do %>
-        <%= cl_image_tag facility.photo, class:"product-image hidden-xs" %>
+        <%= cl_image_tag facility.photo, class:"product-image hidden-xs", width: 175, height: 120, crop: :fill  %>
       <% end %>
       <div class='product-body'>
         <%= link_to facility_path(facility) do %>
@@ -18,8 +18,8 @@
         <p><%= facility.address %></p>
       </div>
 
-      <%= link_to facility_path(facility) do %>
-        <%= cl_image_tag worker.photo, class:"product-image hidden-xs" %>
+      <%= link_to worker_path(worker) do %>
+        <%= cl_image_tag worker.photo, class:"product-image  hidden-xs", width: 175, height: 120, crop: :fill %>
       <% end %>
       <div class='product-body'>
         <%= link_to worker_path(worker) do %>
@@ -29,7 +29,7 @@
       </div>
       <div class='product-body'>
 
-          <h4><%= worker.min_wage / 100 %>€/h</h4>
+          <h4><%= worker.min_wage.to_i / 100  %>€/h</h4>
           <p>price</p>
 
       </div>
@@ -44,8 +44,8 @@
         <% if current_user.id = booking.user_id %>
 
           <% if booking.status == "pending" %>
+            <%= link_to "Delete this request", worker_booking_path(worker.id, booking), method: :delete, class:"btn btn-primary" %>
             <h4>Wait for validation</h4>
-            <%= link_to "Delete this request", worker_booking_path(worker.id, booking), method: :delete, class:"btn btn-success" %>
 
           <% elsif booking.status == "accepted" %>
             <a class="btn btn-success"  href="mailto:<%=worker.email%>">Send details to <%= worker.first_name %></a>
