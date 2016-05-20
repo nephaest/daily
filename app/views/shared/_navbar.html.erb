@@ -12,40 +12,34 @@
   <% end %>
 
   <div class="navbar-wagon-right hidden-xs hidden-sm">
-    <!-- Search form -->
-<!--     <form action="" class="navbar-wagon-search">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
-      <button type="submit" class="navbar-wagon-search-btn">
-        <i class="fa fa-search"></i>
-      </button>
-    </form> -->
-
-    <%#=render 'shared/search' if !current_page?('/') %>
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
-<!-- Awful: shall be in a controller and ajaxified -->
+      <!-- Awful: shall be in a controller and ajaxified -->
       <div class="badge-container">
         <%= icon 'envelope-o' %>
-        <div class="badge badge-blue">
-          <% if current_user.owner && !current_user.facilities.blank? %>
+        <% if current_user.owner && !current_user.facilities.blank? %>
+          <div class="badge badge-blue">
             <%= Booking.where(facility: current_user.facilities.first).where(status: 'accepted').future.length %>
-          <% elsif !current_user.owner %>
+          </div>
+          <%= link_to '', worker_booking_path(current_user), class:'link-badge' %>
+        <% elsif !current_user.owner %>
+          <div class="badge badge-blue">
             <%= Booking.where(user: current_user).where(status: 'pending').future.length %>
-          <% end %>
-        </div>
+          </div>
+          <%= link_to '', worker_path(current_user) + '/#restaurants', class:'link-badge' %>
+        <% end %>
       </div>
   <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
           <% if !current_user.photo.nil?  %>
-          <%= image_tag current_user.photo, class: "avatar-navbar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <%= image_tag current_user.photo, class: "avatar-navbar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <% else %>
-          <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <%end%>
+            <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to worker_path(current_user) do %>
-
                 <i class="fa fa-user"></i> <%= t ".profile", default: "Profile" %>
               <% end %>
             </li>
