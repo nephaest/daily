@@ -21,7 +21,7 @@
           <div class="badge badge-blue">
             <%= Booking.where(facility: current_user.facilities.first).where(status: 'accepted').future.length %>
           </div>
-          <%= link_to '', worker_booking_path(current_user), class:'link-badge' %>
+          <%= link_to '', worker_bookings_path(current_user), class:'link-badge' %>
         <% elsif !current_user.owner %>
           <div class="badge badge-blue">
             <%= Booking.where(user: current_user).where(status: 'pending').future.length %>
