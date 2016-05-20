@@ -24,20 +24,7 @@
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
 
-      <!-- Notification -->
-<!--       <%# link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
-        <div class="badge-container">
-          <%# icon 'envelope-o' %>
-          <div class="badge badge-blue">
-            <%# if current_user.position == "I'm a owner" %>
-              <%#Booking.where(facility_id: current_user.facilities.first.id).length%>
-            <%#else%>
-            <%#end%>
-          </div>
-        </div>
-      <%# end %>
- -->
-      <!-- Profile picture and dropdown -->
+  <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
           <% if !current_user.photo.nil?  %>
@@ -47,7 +34,8 @@
           <%end%>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to worker_path(current_user.id) do %>
+              <%= link_to worker_path(current_user) do %>
+
                 <i class="fa fa-user"></i> <%= t ".profile", default: "Profile" %>
               <% end %>
             </li>
