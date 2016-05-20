@@ -1,0 +1,48 @@
+<div class="event-calendar-container">
+  <div class="event-calendar-view">
+    <div id="calendar"></div>
+  </div>
+  <div class="event-calendar-event-view">
+    <ul class='list-unstyled'></ul>
+  </div>
+</div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+
+    function format_event(event) {
+      res = '<li><a href="' + event.url + '">' +  event.title + '</a>';
+      res += '<p>Contact: ' + event.contact + '</p>'
+      res += '<p>@ ' + event.location + '</p>';
+      res += '</li>';
+      return res;
+    }
+
+    $(document).ready(function() {
+      var events = <%= raw @json_events %>;
+      console.log(events)
+      var event_calendar = $('#calendar').clndr({
+        events: events,
+        clickEvents: {
+          click: function(target) {
+            if(target.events.length > 0) {
+              var list = '';
+              for(var i = 0; i < target.events.length; i++) {
+                list += format_event(target.events[i]);
+              }
+              $('.event-calendar-event-view > ul').html(list);
+            } else {
+              $('.event-calendar-event-view > ul').html('');
+            }
+          },
+          onMonthChange: function(month) {
+            console.log('you just went to ' + month.format('MMMM, YYYY'));
+          }
+        },
+        doneRendering: function() {
+          console.log('this would be a fine place to attach custom event handlers.');
+        }
+      });
+    });
+  <% end %>
+<% end %>

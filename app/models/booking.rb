@@ -3,6 +3,8 @@ class Booking < ActiveRecord::Base
   belongs_to :job_request
   belongs_to :user
 
+  scope :future, -> { joins(:job_request).where('job_requests.start_time >= ?', Time.now) }
+
   validates :facility, :job_request, :user, presence: true
   validates :final_price, numericality: { only_integer: true, greater_than: 0 }
   enum status: [:pending, :rejected, :cancelled, :accepted, :done]

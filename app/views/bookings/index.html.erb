@@ -1,0 +1,57 @@
+<div class="container" id="min-height">
+
+
+<h4>Your bookings:</h4>
+<% @bookings.each do |booking|%>
+
+<%facility = Facility.find(booking.facility_id)%>
+<%worker =User.find(booking.user_id) %>
+
+  <div class="product">
+    <%= link_to facility_path(facility) do %>
+      <%= cl_image_tag facility.photo, width: 140, height: 140, crop: :fill, class:"product-image hidden-xs" %>
+    <% end %>
+    <div class='product-body'>
+      <%= link_to facility_path(facility) do %>
+        <h4><%= facility.name %></h4>
+      <% end %>
+      <p><%= facility.address %></p>
+    </div>
+
+    <%= link_to facility_path(facility) do %>
+      <%= cl_image_tag worker.photo, width: 140, height: 140, crop: :fill, class:"product-image hidden-xs" %>
+    <% end %>
+    <div class='product-body'>
+      <%= link_to worker_path(worker) do %>
+        <h4><%= worker.first_name %></h4>
+      <% end %>
+      <p><%= worker.position %></p>
+    </div>
+    <div class='product-body'>
+      <%= link_to "" do %>
+        <h4><%= worker.min_wage / 100 %>€/h</h4>
+        <p>price</p>
+      <% end %>
+    </div>
+    <div class='product-body'>
+      <%= link_to "" do %>
+        <h4><%= booking.status %></h4>
+        <p>status</p>
+      <% end %>
+    </div>
+    <div class='product-body'>
+
+      <% if current_user.id = booking.user_id %>
+        <h4>Wait for validation</h4>
+        <%= link_to "Delete this request", worker_booking_path(worker.id, booking), method: :delete, class:"btn btn-success" %>
+      <% elsif current_user = worker %>
+        <%= link_to "" do %>
+          <h4>Validate the job !</h4>
+        <% end %>
+      <% end %>
+    </div>
+
+
+  </div>
+<% end %>
+</div>

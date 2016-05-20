@@ -3,6 +3,7 @@
 @import "config/bootstrap_variables";
 
 // External libraries
+// @import "clndr";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome-sprockets";
@@ -17,3 +18,5 @@
 @import "workers";
 @import "facilities";
 @import "registrations"
+
+

@@ -1,5 +1,5 @@
 <div class="wrapper-card">
-  <div class="container">
+  <div class="container" id="min-height">
     <div class="row">
       <% if @workers.empty? %>
         <div class="col-xs-12 text-center">
@@ -7,6 +7,7 @@
           <% User.all.take(10).each do |worker| %>
             <div class="col-xs-12 col-sm-4">
               <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=worker.photo%>);">
+                  <div id='price'><%=worker.min_wage/100%> €/h</div>
                   <% unless worker.bookings.empty? %>
                     <div class="card-category">Offer sent</div>
                   <% end %>
@@ -14,7 +15,6 @@
                     <h2><%= worker.first_name %></h2>
                     <p><%= worker.position %></p>
                   </div>
-                  <img class="card-user avatar" src="user.jpg">
                   <%= link_to "", worker_path(worker), class:"card-link"  %>
               </div>
             </div>
@@ -23,23 +23,20 @@
       <% else %>
         <% @workers.each do |worker| %>
           <div class="col-xs-12 col-sm-4">
-              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=worker.photo%>);">
-                <div id='price'><%=worker.min_wage/100%> €/h</div>
-                <% unless worker.bookings.empty? %>
-                  <div class="card-category">Offer sent</div>
-                <% end %>
-                <div class="card-description">
-                  <h2><%= worker.first_name %></h2>
-                  <p><%= worker.position %></p>
-                </div>
-
-
-                <%= link_to "", worker_path(worker), class:"card-link"  %>
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=worker.photo%>);">
+              <div id='price'><%=worker.min_wage/100%> €/h</div>
+              <% unless worker.bookings.empty? %>
+                <div class="card-category">Offer sent</div>
+              <% end %>
+              <div class="card-description">
+                <h2><%= worker.first_name %></h2>
+                <p><%= worker.position %></p>
               </div>
+              <%= link_to "", worker_path(worker), class:"card-link"  %>
+            </div>
           </div>
         <% end %>
       <% end %>
-      </div>
     </div>
   </div>
 </div>

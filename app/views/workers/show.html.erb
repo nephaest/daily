@@ -1,4 +1,4 @@
-<div class="wrapper-user">
+<div id="min-height">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-3 col-sm-offset-3">
@@ -9,14 +9,14 @@
           <% else %>
             <%= image_tag "http://placehold.it/250x300", class:"img-responsive img-thumbnail" %>
           <% end %>
-
         </div>
       </div>
       <div class="col-xs-12 col-sm-3">
         <div class="user-details">
-        <div class="text-center">
-          <h1 class="last_name"><%= @worker.last_name.upcase %></h1>
-          <h2 class="first_name"><%= @worker.first_name.capitalize %></h2>
+          <div class="text-center">
+            <h1 class="last_name"><%= @worker.last_name.upcase %></h1>
+            <h2 class="first_name"><%= @worker.first_name.capitalize %></h2>
+          </div>
         </div>
         <div class="user-infos">
           <ul>
@@ -25,33 +25,46 @@
             <li><p><strong>Email:</strong> <%= @worker.email %></p></li>
             <li><p><strong>Address:</strong> <%= @worker.address %></p></li>
           </ul>
-          </div>
         </div>
       </div>
-    </div>
     <div class="profile-btn">
       <div class="row">
         <div class="row col-xs-12 col-sm-6 col-sm-offset-3">
-            <% if current_user.owner? %>
+            <% if current_user.owner? && current_user != @worker %>
               <%= link_to "Hire", worker_bookings_path(worker_id: @worker.id), method: :post, class:"btn btn-primary" %>
             <% end %>
             <% if current_user == @worker %>
               <%= link_to "Edit", edit_worker_path, class:"btn btn-success" %>
             <% end %>
-          <% unless @worker.bookings.empty? %>
-          <!-- faire correspondre le booking avec le user en question et le current user -->
+            <% unless @worker.bookings.empty? %>
+            <!-- faire correspondre le booking avec le user en question et le current user -->
             <p>You offered a job to <%= @worker.first_name %></p>
-          <% end %>
+            <% end %>
         </div>
       </div>
     </div>
-  </div>
-</div>
-  <div class="wrapper-facility-show">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+          <div class="description-part">
+            <h5>Description:</h5>
+            <p class="text-justify"><%= @worker.description %></p>
+          </div>
+        </div>
+      </div>
+    <div class="wrapper-facility-show">
       <div class="container" id="restaurants">
-        <% if @worker == current_user %>
+        <% if @worker == current_user && @worker.owner? %>
           <%= render 'facilities_list' %>
+        <% elsif @worker == current_user %>
+          <%= render 'joblist' %>
         <% end %>
       </div>
     </div>
-
+    <% if !@worker.owner? && @worker == current_user %>
+      <%= render 'shared/calendar_ui' %>
+    <% end %>
+    <% if @worker.id == current_user.id %>
+      <%= render 'facilities_list' %>
+    <% end %>
+  </div>
+</div>
