@@ -1,11 +1,15 @@
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path('banner/banner.jpg') %>');">
-  <div class="banner-content">
-
-    <h1>Finding <strong>extras</strong> has never been easier</h1>
-    <br>
-
-    <%= render 'shared/search' %>
-  </div>
+<div class="homepage-hero-module">
+    <div class="video-container">
+        <div class="search-bar text-center">
+          <%= render 'shared/search' %>
+        </div>
+        <div class="filter"></div>
+        <video autoplay loop class="fillWidth">
+            <source src= "<%= image_url('Drink-Wine.mp4')%>" type="video/mp4" />
+            <source src="<%= image_url('Drink-Wine.webm')%>" type="video/webm" />
+        </video>
+        <div class="poster hidden">
+            <%= image_tag "Drink-Wine.jpg"%>
+        </div>
+    </div>
 </div>
-
-
