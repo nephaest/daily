@@ -23,6 +23,17 @@
     <%#=render 'shared/search' if !current_page?('/') %>
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
+<!-- Awful: shall be in a controller and ajaxified -->
+      <div class="badge-container">
+        <%= icon 'envelope-o' %>
+        <div class="badge badge-blue">
+          <% if current_user.owner && !current_user.facilities.blank? %>
+            <%= Booking.where(facility: current_user.facilities.first).where(status: 'accepted').future.length %>
+          <% elsif !current_user.owner %>
+            <%= Booking.where(user: current_user).where(status: 'pending').future.length %>
+          <% end %>
+        </div>
+      </div>
 
   <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">

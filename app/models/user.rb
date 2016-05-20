@@ -18,13 +18,14 @@ class User < ActiveRecord::Base
 
   validates :description,  length: { minimum: 100, maximum: 1000, allow_nil: true }
   validates :mobility_radius, numericality: { only_integer: true,  greater_than_or_equal_to: 0, allow_nil: true }
+  # validate :social_security_number_is_valid, on: :update, unless: :owner
 
   def full_name
     "#{first_name} #{last_name}"
   end
 
   def owner?
-    facilities.any?
+    owner
   end
 
 
