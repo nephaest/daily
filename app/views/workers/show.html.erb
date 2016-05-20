@@ -45,15 +45,15 @@
         </div>
       </div>
     </div>
-    <div class="wrapper-facility-show">
-      <div class="container" id="restaurants">
-        <% if @worker == current_user && @worker.owner? %>
-          <%= render 'facilities_list' %>
-        <% elsif @worker == current_user %>
-          <%= render 'joblist' %>
-          <%= render 'shared/calendar_ui' %>
-        <% end %>
-      </div>
+  </div>
+  <div class="wrapper-facility-show">
+    <div class="container" id="restaurants">
+      <% if @worker == current_user && @worker.owner? %>
+        <%= render 'facilities_list' %>
+      <% elsif @worker == current_user %>
+        <%= render 'joblist' %>
+        <%= render 'shared/calendar_ui' %>
+      <% end %>
     </div>
   </div>
 </div>
